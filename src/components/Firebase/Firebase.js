@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -15,6 +16,7 @@ class Firebase {
       app.initializeApp(config);
       
       this.auth = app.auth();
+      this.db = app.database();
     }
 
     async doCreateUserWithEmailAndPassword(email, password) {
@@ -35,6 +37,13 @@ class Firebase {
 
     async doPasswordUpdate(password) {
       await this.auth.currentUser.updatePassword(password);
+    }
+
+    /* CHATROOM API */
+    chatroom() {
+      const myRef = this.db.ref();
+      const myCollection = myRef.child("chatroom");
+      return myCollection;
     }
 }
 
