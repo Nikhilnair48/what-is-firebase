@@ -1,0 +1,48 @@
+.chat-container {
+    width: 400px;
+    height: 300px;
+}
+
+.chat-container .message-container {
+    height: 250px;
+    overflow-y: scroll;
+    padding: 0 20px;
+}
+
+.message {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.message::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.message img {
+    float: left;
+    max-width: 50px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.message img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+    }
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
