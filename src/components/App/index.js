@@ -9,6 +9,7 @@ import Landing from '../Landing';
 import ResetPassword from '../ResetPassword';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';
+import SignOut from '../SignOut';
 
 import './App.css';
 
@@ -26,6 +27,7 @@ export default class App extends React.Component {
                     <Route path={Routes.CHAT} component={Chat} />
                     <Route path={Routes.SIGN_IN} component={SignIn} />
                     <Route path={Routes.SIGN_UP} component={SignUp} />
+                    <Route path={Routes.SIGN_OUT} component={SignOut} />
                     <Route path={Routes.RESETPASSWORD} component={ResetPassword} />
                 </div>
             </Router>

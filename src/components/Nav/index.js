@@ -14,6 +14,9 @@ export default class Navigation extends React.Component {
                         <Link to={Routes.SIGN_UP}>Sign Up</Link>
                     </li>
                     <li>
+                        <Link to={Routes.SIGN_OUT}>Sign Out</Link>
+                    </li>
+                    <li>
                         <Link to={Routes.LANDING}>Home</Link>
                     </li>
                     <li>
