@@ -11,15 +11,35 @@ import SignIn from '../SignIn';
 import SignUp from '../SignUp';
 import SignOut from '../SignOut';
 
+import { withFirebase } from '../Firebase';
+
 import './App.css';
 
-export default class App extends React.Component {
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            authUser: null
+        };
+    }
+
+    componentDidMount() {
+        this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+          authUser ? this.setState({ authUser }) : this.setState({ authUser: null });
+        });
+    }
+
+    componentWillUnmount() {
+        this.listener();
+    }
+
     render() {
-        let appProps = this.props;
         return (
             <Router>
                 <div>
-                    <Navigation />
+                    <Navigation authUser={this.state.authUser} />
                     
                     <h1 />
 
@@ -34,3 +54,5 @@ export default class App extends React.Component {
         )
     }
 }
+
+export default withFirebase(App);
