@@ -39,7 +39,7 @@ class SignUpPage extends React.Component {
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         console.log(authUser);
-        this.props.history.push(Routes.CHAT);
+        this.props.history.push(Routes.SIGN_IN);
         // go home
       })
       .catch(error => {
@@ -63,7 +63,7 @@ class SignUpPage extends React.Component {
     const { name, value } = e.target;
     const { user } = this.state;
         
-    if(value != null || value != undefined || value.length > 5) {
+    if(value != null && value != undefined && value.length > 5 && value.includes("@")) {
       this.setState({ 
         validEmail: true,
         user: {
@@ -84,7 +84,7 @@ class SignUpPage extends React.Component {
     const { name, value } = e.target;
     const { user } = this.state;
 
-    if(value != null || value != undefined || value.length == 5) {
+    if(value != null && value != undefined && value.length >= 5) {
       this.setState({ 
         validName: true,
         user: {
@@ -104,13 +104,13 @@ class SignUpPage extends React.Component {
     const { name, value } = e.target;
     const { user } = this.state;
 
-    if(value != null || value != undefined || value.length == 5) {
-      this.setState({ 
+    if(value != null && value != undefined && value.length >= 5) {
+      this.setState({
         validPassword: true,
         user: {
           ...user,
           [name]: value
-      }
+        }
       });
     } else {
       this.setState({
@@ -124,7 +124,7 @@ class SignUpPage extends React.Component {
   render() {
     return(
       <div className="signup-container col-sm-8 col-md-6 col-lg-6">
-        <h1>SignUp</h1>
+        <h1>Sign Up</h1>
         <div className="row">
           <div className="form-group">
             <label htmlFor="name">Name</label>
@@ -135,7 +135,7 @@ class SignUpPage extends React.Component {
             <input type="email" className="form-control" id="email" placeholder="" name="email" onChange={this.validateEmail} />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Email address</label>
+            <label htmlFor="password">Password</label>
             <input type="password" className="form-control" id="password" placeholder="" name="password" onChange={this.validatePassword} />
           </div>
           <button type="button" className="btn btn-primary" disabled={this.state.signUpDisabled} onClick={this.createUser}>Sign up</button>
