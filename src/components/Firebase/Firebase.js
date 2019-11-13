@@ -21,20 +21,20 @@ class Firebase {
       await this.auth.createUserWithEmailAndPassword(email, password);
     }
 
-    doSignInWithEmailAndPassword(email, password) {
-      this.auth.signInWithEmailAndPassword(email, password);
+    async doSignInWithEmailAndPassword(email, password) {
+      await this.auth.signInWithEmailAndPassword(email, password);
     }
 
-    doSignOut() {
-      this.auth.signOut();
+    async doSignOut() {
+      await this.auth.signOut();
     }
 
-    doPasswordReset(email) {
-      this.auth.sendPasswordResetEmail(email);
+    async doPasswordReset(email) {
+      await this.auth.sendPasswordResetEmail(email);
     }
 
-    doPasswordUpdate(password) {
-      this.auth.currentUser.updatePassword(password);
+    async doPasswordUpdate(password) {
+      await this.auth.currentUser.updatePassword(password);
     }
 }
 
