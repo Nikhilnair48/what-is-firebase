@@ -1,5 +1,4 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var webpack = require('webpack'); 
 var Dotenv = require('dotenv-webpack');
 
 require("babel-register");
@@ -32,7 +31,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['file-loader?name=[name].[ext]']
             },
-            { 
+            {
                 test: /\.css$/, 
                 loader: "style-loader!css-loader" 
             },
