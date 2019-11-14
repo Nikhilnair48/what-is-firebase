@@ -45,7 +45,10 @@ class Firebase {
       const myCollection = myRef.child("chatroom");
       return myCollection;
     }
+
+    update(message) {
+      this.db.ref().child("chatroom").push(message);
+    }
 }
 
 export default Firebase;
-  

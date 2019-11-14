@@ -8,8 +8,13 @@ class Chat extends React.Component {
 
     this.state = {
       messages: [],
+      draftMessage: "",
+      sendButtonDisabled: true
     }
     this.renderMessages = this.renderMessages.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
+    this.updateDraftMessage = this.updateDraftMessage.bind(this);
+    this.getUUID = this.getUUID.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +27,38 @@ class Chat extends React.Component {
         messages: newMessages
       }); 
     });
+  }
+
+  getUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+  }
+
+  sendMessage() {
+    let newMessage = {
+      messageId: this.getUUID(),
+      messageText: this.state.draftMessage,
+      email: this.props.firebase.auth.currentUser.email,
+      messageTimestamp: Math.round(new Date().getTime() / 1000)
+    }
+    this.props.firebase.update(newMessage);
+  }
+  
+  updateDraftMessage(e) {
+    const { name, value } = e.target;
+
+    if(value != null && value != undefined && value.length > 0) {
+      this.setState({
+        sendButtonDisabled: false,
+        draftMessage: value
+      });
+    } else {
+      this.setState({
+        sendButtonDisabled: true
+      });
+    }
   }
 
   renderMessages() {
@@ -40,7 +77,7 @@ class Chat extends React.Component {
         );
       } else {
         return (
-          <div>Coming!</div>
+          <div>Please wait...!</div>
         )
       }
   }
@@ -54,7 +91,12 @@ class Chat extends React.Component {
             {this.renderMessages()}
           </div>
           <div className="user-input">
-            <input className="form-control" type="text" placeholder="" />
+            <div className="input-group">
+              <input className="form-control" type="text" placeholder="" onChange={this.updateDraftMessage} />
+              <div className="input-group-append">
+                <button className="btn btn-outline-secondary" type="button" disabled={this.state.sendButtonDisabled} onClick={this.sendMessage}>Send</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
