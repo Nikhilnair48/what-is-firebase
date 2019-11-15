@@ -14,3 +14,6 @@ firebase - integration with firebase.
 
 uglifyjs-webpack-plugin@latest and acorn-dynamic-import@3.0.0 are peer dependencies for webpack to minify and parse the source code, respectively.
 
+### References
+
+Tutorial followed, especially for the user authentication & firebase setup part: https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial#react-router-for-firebase-auth
